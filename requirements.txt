@@ -1,0 +1,11 @@
+# Voz, transcrição e IA de imagem. O PyTorch é instalado à parte (veja SETUP.md): com placa NVIDIA, a versão CUDA.
+kokoro-onnx==0.6.1
+soundfile==0.14.0
+numpy==2.4.6
+faster-whisper==1.2.1
+# 4.7.1: a 4.8.x é bloqueada pelo "Controle Inteligente de Aplicativos" do Windows 11. Em Linux/macOS pode subir.
+ctranslate2==4.7.1
+onnxruntime==1.31.0
+opencv-python-headless==5.0.0.93
+pillow==12.3.0
+spandrel==0.4.2

@@ -1,0 +1,17 @@
+node_modules/
+.venv/
+.venv-chatterbox/
+modelos/*
+!modelos/.gitkeep
+remotion/
+testes/
+projetos/*/renders/
+projetos/*/snapshots/
+modelo/assets/
+modelo/index.html
+modelo/compositions/fundo.html
+modelo/compositions/transicoes.html
+.hyperframes/
+__pycache__/
+*.log
+MEU-ESTUDIO.md

@@ -1,0 +1,11 @@
+{
+  "name": "estudio-video-ia",
+  "private": true,
+  "type": "module",
+  "description": "Estúdio de edição de vídeo para usar com uma IA de programação (Claude Code, Codex): motion graphics, narração com IA, trilha, legendas e melhoria de vídeo.",
+  "devDependencies": {
+    "gsap": "3.14.2",
+    "hyperframes": "0.8.143",
+    "playwright": "^1.64.0"
+  }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: Poppins; font-weight: 500; src: url(assets/Poppins-Medium.ttf); }
+        @font-face { font-family: Poppins; font-weight: 800; src: url(assets/Poppins-ExtraBold.ttf); }
+        #root { position: absolute; inset: 0; overflow: hidden; font-family: Poppins, sans-serif; color: #ececec; }
+        #s2-stage { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5vh; padding: 0 6vw; }
+        #s2-head { font-size: 5.6vw; font-weight: 800; letter-spacing: -0.035em; line-height: 1.08; text-align: center; }
+        #s2-head span { color: var(--destaque); }
+        #s2-cards { display: flex; gap: 2vw; }
+        .s2-card { width: 26vw; padding: 3.2vh 2vw; border-radius: 28px; background: #1c1c1c; border: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45); text-align: center; }
+        .s2-num { font-size: 6vw; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; color: var(--destaque); white-space: nowrap; }
+        .s2-lab { margin-top: 0.6vh; font-size: max(1.35vw, 26px); font-weight: 500; color: #a3a3a3; }
+        /* standing format: the cards stack and the type scales up */
+        @media (orientation: portrait) {
+          #s2-head { font-size: 9.6vw; }
+          #s2-cards { flex-direction: column; gap: 2.4vh; }
+          .s2-card { width: 78vw; padding: 3vh 4vw; }
+          .s2-num { font-size: 13vw; }
+        }
+      </style>
+      <div id="root" data-composition-id="s2-numeros" data-width="1920" data-height="1080">
+        <div id="s2-stage">
+          <div id="s2-head">Resultados que <span>aparecem.</span></div>
+          <div id="s2-cards">
+            <div class="s2-card"><div class="s2-num" id="s2-n1">+0%</div><div class="s2-lab">vendas no trimestre</div></div>
+            <div class="s2-card"><div class="s2-num" id="s2-n2">0,0</div><div class="s2-lab">nota dos clientes</div></div>
+            <div class="s2-card"><div class="s2-num" id="s2-n3">0 mil</div><div class="s2-lab">pedidos entregues</div></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s2-head", { opacity: 0, y: 50, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.out" }, 0.05);
+          tl.fromTo(".s2-card", { opacity: 0, y: 80, scale: 0.85, rotationX: -25 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.55, stagger: 0.35, ease: "back.out(1.7)" }, 0.4);
+
+          // example numbers count up, each with its own format
+          const counter = (sel, to, at, fmt) => {
+            const o = { v: 0 };
+            tl.fromTo(o, { v: 0 }, { v: to, duration: 1.3, ease: "power2.out", onUpdate: () => { document.querySelector(sel).textContent = fmt(o.v); } }, at);
+          };
+          counter("#s2-n1", 128, 0.5, (v) => "+" + Math.round(v) + "%");
+          counter("#s2-n2", 4.9, 0.85, (v) => v.toFixed(1).replace(".", ","));
+          counter("#s2-n3", 12, 1.2, (v) => Math.round(v) + " mil");
+          tl.fromTo(".s2-num", { scale: 1 }, { scale: 1.06, duration: 0.15, stagger: 0.35, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 1.8);
+
+          // exit: lift away
+          tl.to("#s2-stage", { y: -90, opacity: 0, duration: 0.28, ease: "power2.in" }, 3.84);
+          window.__timelines["s2-numeros"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

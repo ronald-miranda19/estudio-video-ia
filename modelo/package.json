@@ -1,0 +1,11 @@
+{
+  "name": "modelo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "npx --yes hyperframes@0.8.143 preview",
+    "check": "npx --yes hyperframes@0.8.143 check",
+    "render": "npx --yes hyperframes@0.8.143 render -q delivery"
+  }
+}
